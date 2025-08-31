@@ -1,0 +1,20 @@
+.app-layout {
+  display: flex;
+  height: 100vh; 
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 240px;              
+  flex-shrink: 0;            
+  background: #1e293b;       
+  color: white;
+  z-index: 10;               
+}
+
+.app-content {
+  flex: 1;
+  background: #f1f5f9;
+  padding: 1.5rem;
+  overflow-y: auto;         
+}

@@ -1,0 +1,45 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" />
+    <div *ngIf="postForm.get('title')?.touched && postForm.get('title')?.invalid">
+      Title is required
+    </div>
+  </div>
+
+  <div>
+    <label for="body">Body:</label>
+    <textarea id="body" rows="5" formControlName="body"></textarea>
+    <div *ngIf="postForm.get('body')?.touched && postForm.get('body')?.invalid">
+      Body is required
+    </div>
+  </div>
+
+  <div>
+    <label for="tags">Tags:</label>
+    <input id="tags" type="text" formControlName="tags" placeholder="Comma separated"/>
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" formControlName="published" />
+      Published
+    </label>
+  </div>
+
+ <div>
+  <label for="userId">Author:</label>
+  <select id="userId" formControlName="userId">
+    <option value="">-- Select Author --</option>
+    <option *ngFor="let user of users" [value]="user.id">
+      {{ user.firstname }} {{ user.lastname }}
+    </option>
+  </select>
+  <div *ngIf="postForm.get('userId')?.touched && postForm.get('userId')?.invalid">
+    Author is required
+  </div>
+</div>
+
+
+  <button type="submit">{{postId ? 'Edit Post' : 'Add Post'}}</button>
+</form>
