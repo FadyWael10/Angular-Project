@@ -13,8 +13,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddUserComponent {
   userForm: FormGroup;
-  userId:any;
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private route: ActivatedRoute) {
+  userId: any;
+  currentAvatar: string | null = null; 
+
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.userForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -29,18 +36,23 @@ export class AddUserComponent {
     if (file) {
       this.userForm.patchValue({ avatar: file });
     }
+    console.log(this.userForm.value);
   }
 
   onSubmit() {
     if (this.userForm.valid) {
+      const formData = { ...this.userForm.value };
+
+console.log(formData);
+
       if (this.userId) {
-        this.userService.updateUser(this.userId, this.userForm.value).subscribe(res => {
+        this.userService.updateUser(this.userId, formData).subscribe(res => {
           console.log('updated');
           this.userForm.reset();
           this.router.navigate(['users']);
         });
       } else {
-        this.userService.createUser(this.userForm.value).subscribe(res => {
+        this.userService.createUser(formData).subscribe(res => {
           console.log('created');
           this.userForm.reset();
           this.router.navigate(['users']);
@@ -50,6 +62,7 @@ export class AddUserComponent {
       this.userForm.markAllAsTouched();
     }
   }
+
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
     if (this.userId) {
@@ -58,11 +71,10 @@ export class AddUserComponent {
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
-          role: user.role,
-          avatar: null
+          role: user.role
         });
+        this.currentAvatar = user.avatar; 
       });
     }
   }
-
 }

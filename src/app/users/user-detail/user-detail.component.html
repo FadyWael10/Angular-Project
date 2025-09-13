@@ -1,0 +1,8 @@
+<div *ngIf="user" class="user-detail-card mat-elevation-z4">
+  <img [src]="user.avatar" alt="Avatar" class="avatar" />
+
+  <h2>{{ user.firstname }} {{ user.lastname }}</h2>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Role:</strong> {{ user.role }}</p>
+  <p><strong>ID:</strong> {{ user.id }}</p>
+</div>

@@ -1,12 +1,29 @@
-
 html {
   font-family: sans-serif;
 }
 
 body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-theme {
+  background-color: #ffffff;
   color: #000000;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-theme button {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-theme a {
+  color: #90caf9;
+}

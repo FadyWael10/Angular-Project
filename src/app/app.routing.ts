@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AddPostComponent } from './posts/add-posts/add-posts.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostDetailComponent } from './posts/posts-details/posts-detail.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard, RoleGuard]},
   { path: 'add-user/:id', component: AddUserComponent, canActivate: [AuthGuard]},
+  { path: 'users/:id', component: UserDetailComponent, canActivate: [AuthGuard]},
   { path: 'add-posts', component: AddPostComponent, canActivate: [AuthGuard, RoleGuard]},
   { path: 'add-posts/:id', component: AddPostComponent, canActivate: [AuthGuard]},
   { path: 'post/:id', component: PostDetailComponent, canActivate: [AuthGuard]},

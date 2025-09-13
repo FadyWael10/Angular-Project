@@ -21,6 +21,7 @@ export class UserService {
   }
 
   updateUser(id: number, user: any) {
+    console.log(user);
     return this.apiService.update(`/users`, id, user);
   }
 

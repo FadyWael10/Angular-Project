@@ -1,11 +1,20 @@
+<div *ngIf="loadingService.loading$ | async" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
+
 <div class="app-layout">
   <aside class="sidebar">
     <app-sidebar></app-sidebar>
   </aside>
 
   <main class="app-content">
+    <button (click)="toggleTheme()" class="theme-toggle">
+      {{ isDark ? ' Light Mode' : ' Dark Mode' }}
+    </button>
+
     <router-outlet></router-outlet>
   </main>
 </div>
+
 
   

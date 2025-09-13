@@ -1,28 +1,35 @@
 <div class="btn">
-    <button mat-raised-button color="primary" (click)="addUser()" *appRoleOnly="'admin'">Add User</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="addUser()"
+    *appRoleOnly="'admin'">
+    Add User
+  </button>
 </div>
+
 <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
   <div class="form-row">
     <mat-form-field appearance="fill" class="form-field dense-input">
       <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstname" placeholder="Enter firstname">
+      <input matInput formControlName="firstname" placeholder="Enter firstname" />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="form-field dense-input">
       <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastname" placeholder="Enter lastname">
+      <input matInput formControlName="lastname" placeholder="Enter lastname" />
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="form-field dense-input">
       <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="Enter email">
+      <input matInput formControlName="email" placeholder="Enter email" />
     </mat-form-field>
 
     <div class="form-actions">
       <button mat-raised-button color="primary" type="submit">
         <mat-icon>search</mat-icon> Search
       </button>
-      <button mat-stroked-button color="warn" type="button" (click)="searchForm.reset()">
+      <button mat-stroked-button color="warn" type="button" (click)="onReset()">
         <mat-icon>clear</mat-icon> Reset
       </button>
     </div>
@@ -30,58 +37,64 @@
 </form>
 
 <div class="mat-elevation-z8 table-container" cdkScrollable>
-    <table mat-table [dataSource]="dataSource" class="full-width-table mat-table">
+  <table mat-table [dataSource]="dataSource" class="full-width-table mat-table">
 
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let user"> {{ user.id }} </td>
-        </ng-container>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let user"> {{ user.id }} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="firstname">
-            <th mat-header-cell *matHeaderCellDef> First Name </th>
-            <td mat-cell *matCellDef="let user"> {{ user.firstname }} </td>
-        </ng-container>
+    <ng-container matColumnDef="firstname">
+      <th mat-header-cell *matHeaderCellDef> First Name </th>
+      <td mat-cell *matCellDef="let user">
+        <span [innerHTML]="user.firstname | truncate:15 | highlight:searchForm.value.firstname"></span>
+      </td>
+    </ng-container>
 
-        <ng-container matColumnDef="lastname">
-            <th mat-header-cell *matHeaderCellDef> Last Name </th>
-            <td mat-cell *matCellDef="let user"> {{ user.lastname }} </td>
-        </ng-container>
+    <ng-container matColumnDef="lastname">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let user">
+        <span [innerHTML]="user.lastname | truncate:15 | highlight:searchForm.value.lastname"></span>
+      </td>
+    </ng-container>
 
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
-        </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let user">
+        <span [innerHTML]="user.email | truncate:25 | highlight:searchForm.value.email"></span>
+      </td>
+    </ng-container>
 
-        <ng-container matColumnDef="role">
-            <th mat-header-cell *matHeaderCellDef> Role </th>
-            <td mat-cell *matCellDef="let user"> {{ user.role }} </td>
-        </ng-container>
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Role </th>
+      <td mat-cell *matCellDef="let user"> {{ user.role }} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="avatar">
-            <th mat-header-cell *matHeaderCellDef> Avatar </th>
-            <td mat-cell *matCellDef="let user">
-                <img [src]="user.avatar" alt="Avatar" width="40" height="40" *ngIf="user.avatar">
-            </td>
-        </ng-container>
+    <ng-container matColumnDef="avatar">
+      <th mat-header-cell *matHeaderCellDef> Avatar </th>
+      <td mat-cell *matCellDef="let user">
+        <img [src]="user.avatar" alt="Avatar" width="40" height="40" *ngIf="user.avatar" />
+      </td>
+    </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let user">
-                <button mat-button (click)="editUser(user.id)">Edit</button>
-                <button mat-button color="warn" (click)="deleteUser(user.id)">Delete</button>
-            </td>
-        </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-button (click)="viewUser(user.id)">View</button>
+        <button mat-button (click)="editUser(user.id)">Edit</button>
+        <button mat-button color="warn" (click)="deleteUser(user.id)">Delete</button>
+      </td>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" appElevateOnHover></tr>
+  </table>
 
   <mat-paginator
-      [length]="resultsLength"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      showFirstLastButtons
-      class="styled-paginator"
-      [pageSizeOptions]="[5, 10, 25, 100]">
+    [length]="resultsLength"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    showFirstLastButtons
+    class="styled-paginator">
   </mat-paginator>
 </div>

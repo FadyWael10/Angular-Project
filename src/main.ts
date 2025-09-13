@@ -6,6 +6,7 @@ import { appRouter } from './app/app.routing';
 import { TokenInterceptor } from './app/token.interceptor';
 import { ErrorInterceptor } from './app/error.interceptor';
 import { provideToastr } from 'ngx-toastr';
+import { LoadingInterceptor } from './app/loading.interceptor';
 
 
 bootstrapApplication(AppComponent, {
@@ -13,7 +14,7 @@ bootstrapApplication(AppComponent, {
     provideToastr(),
     provideAnimationsAsync(),
     provideHttpClient(
-      withInterceptors([TokenInterceptor, ErrorInterceptor])
+      withInterceptors([TokenInterceptor, ErrorInterceptor,LoadingInterceptor])
     ),
     appRouter
   ]
