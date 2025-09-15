@@ -1,0 +1,46 @@
+/* src/app/app.component.scss */
+
+.app-layout {
+  display: block; /* not necessary to be flex since sidebar is fixed */
+  height: 100vh;
+  overflow: hidden;
+  transition: margin-left 0.3s ease;
+}
+
+/* main content area that will be shifted */
+.app-content {
+  transition: margin-left 0.3s ease;
+  padding: 1.5rem;
+  min-height: 100vh;
+  background: #f1f5f9;
+  /* default when sidebar is open (240px) */
+  margin-left: 240px;
+}
+
+/* When parent has class sidebar-collapsed (emitted true), shift content left */
+.app-layout.sidebar-collapsed .app-content {
+  margin-left: 64px; /* collapsed width */
+}
+
+/* If you want an option to hide sidebar completely (0), change to 0 instead of 64px */
+
+/* Loading overlay + spinner (keep your original styles) */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ddd;
+  border-top: 5px solid #3f51b5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }

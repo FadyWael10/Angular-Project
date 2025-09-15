@@ -128,3 +128,36 @@
   display: flex;
   gap: 10px;
 }
+.table-container {
+  margin: 20px;
+  border-radius: 8px;
+  overflow: hidden;       /* default desktop */
+  background-color: #ffffff;
+
+  /* ✅ On mobile: make table horizontally scrollable */
+  @media (max-width: 768px) {
+    overflow-x: auto;
+  }
+}
+
+.full-width-table {
+  width: 100%;
+  min-width: 600px;       /* ✅ prevents columns from collapsing on large screens */
+
+  @media (max-width: 768px) {
+    min-width: unset;     /* ✅ allow shrinking when scrolling */
+    font-size: 13px;
+  }
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 16px;
+  font-size: 14px;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    font-size: 12px;      /* ✅ smaller text for mobile */
+  }
+}

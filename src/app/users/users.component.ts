@@ -32,7 +32,7 @@ import { ElevateOnHoverDirective } from '../directives/elevate-on-hover.directiv
     ElevateOnHoverDirective 
   ],
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'role', 'avatar', 'actions'];

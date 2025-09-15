@@ -9,10 +9,11 @@ import { LoadingService } from './services/loading.service';
   standalone: true,
   imports: [RouterOutlet, SidebarComponent, NgIf, AsyncPipe],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   isDark = false;
+ isSidebarCollapsed = false;
 
   constructor(public loadingService: LoadingService) {}
 
@@ -38,5 +39,8 @@ export class AppComponent implements OnInit {
       document.body.classList.add('light-theme');
       localStorage.setItem('theme', 'light');
     }
+  }
+  onSidebarToggle(state: boolean) {
+    this.isSidebarCollapsed = state;
   }
 }

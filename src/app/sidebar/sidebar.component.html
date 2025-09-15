@@ -1,16 +1,19 @@
-<div class="sidebar" >
-  <div class="sidebar-header">
-    <span  class="logo">MyApp</span>
+<button class="hamburger" (click)="toggleSidebar()">
+  &#9776;
+</button>
+
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div *ngIf="!isCollapsed" class="sidebar-header">
+    <span class="logo">MyApp</span>
   </div>
 
-  <nav class="sidebar-nav">
-    <a routerLink="/home"> <span >Home</span></a>
-    <a routerLink="/users"> <span >Users</span></a>
-    <a routerLink="/posts"> <span >Posts</span></a>
-    
+  <nav *ngIf="!isCollapsed" class="sidebar-nav">
+    <a routerLink="/home" (click)="toggleSidebar()">Home</a>
+    <a routerLink="/users" (click)="toggleSidebar()">Users</a>
+    <a routerLink="/posts" (click)="toggleSidebar()">Posts</a>
   </nav>
 
-  <div class="sidebar-footer">
-    <button (click)="logout()"> <span >Logout</span></button>
+  <div *ngIf="!isCollapsed" class="sidebar-footer">
+    <button (click)="logout();toggleSidebar()">Logout</button>
   </div>
 </div>
