@@ -3,10 +3,9 @@
 </div>
 
 <div class="app-layout" [class.sidebar-collapsed]="isSidebarCollapsed">
-  <!-- Sidebar -->
+  
   <app-sidebar (toggle)="onSidebarToggle($event)"></app-sidebar>
 
-  <!-- Main content -->
   <main class="app-content">
     <button (click)="toggleTheme()" class="theme-toggle">
       {{ isDark ? ' Light Mode' : ' Dark Mode' }}

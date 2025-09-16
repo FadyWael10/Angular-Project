@@ -12,7 +12,7 @@
   z-index: 1050;
 
   &.collapsed {
-    width: 64px; // desktop mini mode
+    width: 64px;
   }
 
 
@@ -29,7 +29,6 @@
       transition: opacity 0.3s ease;
     }
 
-    // hide logo text when collapsed
     .collapsed & .logo {
       opacity: 0;
     }
@@ -76,7 +75,6 @@
   }
 }
 
-/* Hamburger button (always visible) */
 .hamburger {
   position: fixed;
   top: 1rem;
@@ -89,33 +87,31 @@
   z-index: 1100;
 }
 
-/* On mobile, sidebar overlays instead of shrinking */
-/* On mobile, sidebar overlays and centers content */
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;   /* ✅ center vertically */
-    align-items: center;       /* ✅ center horizontally */
-    text-align: center;        /* make links & footer centered */
+    justify-content: center;   
+    align-items: center;       
+    text-align: center;        
   }
 
   .sidebar-header,
   .sidebar-nav,
   .sidebar-footer {
-    width: 100%;          /* take full width */
+    width: 100%;          
   }
 
   .sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 1rem;            /* spacing between links */
-    align-items: center;  /* keep links centered */
+    gap: 1rem;            
+    align-items: center;  
   }
 
   .sidebar-footer {
-    margin-top: 1.5rem;   /* space from nav */
+    margin-top: 1.5rem;   
     text-align: center;
   }
 }

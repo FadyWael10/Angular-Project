@@ -131,10 +131,9 @@
 .table-container {
   margin: 20px;
   border-radius: 8px;
-  overflow: hidden;       /* default desktop */
+  overflow: hidden;      
   background-color: #ffffff;
 
-  /* ✅ On mobile: make table horizontally scrollable */
   @media (max-width: 768px) {
     overflow-x: auto;
   }
@@ -142,10 +141,10 @@
 
 .full-width-table {
   width: 100%;
-  min-width: 600px;       /* ✅ prevents columns from collapsing on large screens */
+  min-width: 600px;       
 
   @media (max-width: 768px) {
-    min-width: unset;     /* ✅ allow shrinking when scrolling */
+    min-width: unset;     
     font-size: 13px;
   }
 }
@@ -158,6 +157,6 @@
 
   @media (max-width: 768px) {
     padding: 8px;
-    font-size: 12px;      /* ✅ smaller text for mobile */
+    font-size: 12px;     
   }
 }
