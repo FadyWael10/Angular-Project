@@ -1,15 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "dist/essentials/index.html",
-      "use": "@vercel/static"
-    }
-  ],
+  "outputDirectory": "dist/essentials",
   "routes": [
     {
       "src": "/(.*)",
       "dest": "/index.html"
-}
+    }
   ]
 }
