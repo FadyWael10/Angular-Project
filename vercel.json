@@ -11,5 +11,8 @@
       "src": "/(.*)",
       "dest": "dist/essentials/index.html"
     }
-  ]
+  ],
+  "rewrites": [
+  { "source": "/(.*)", "destination": "/" }
+]
 }
